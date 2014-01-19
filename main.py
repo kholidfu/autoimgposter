@@ -29,7 +29,6 @@ c = pymongo.Connection()
 c.drop_database('autoimg')
 db = c['autoimg']
 
-
 for fn in os.listdir('img'):
     filename, filext = os.path.splitext(fn)
     im = Image.open('img/' + fn)
@@ -43,6 +42,8 @@ for fn in os.listdir('img'):
             'added': datetime.now(),
             'hits': 0,
             })
+    # move the image into img folder
+    # shutil.move('temp/filename', 'img/filename')
 
 from pprint import pprint
 pprint(db.image.find_one())
