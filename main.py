@@ -1,4 +1,4 @@
-from PIL import Image
+from PIL import Image # pip install pillow
 import os
 
 for fn in os.listdir('img'):
