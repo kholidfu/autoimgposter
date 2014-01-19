@@ -7,6 +7,18 @@ from datetime import datetime
 2. masing-masing image kemudian di-extract info nya sebagai input untuk dbase
 3. setiap image yang selesai di-extract dimasukkan ke dalam folder img
 4. done!
+
+data
+
+{
+'title': 'thetitle',
+'size': 'imgsize',
+'dim': 'img_dimension', # tuple
+'format': 'img_type', # jpeg, png
+'added': datetime.now(),
+'hits': 0,
+}
+
 """
 
 for fn in os.listdir('img'):
