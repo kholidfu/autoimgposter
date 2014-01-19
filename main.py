@@ -2,6 +2,13 @@ from PIL import Image # pip install pillow
 import os
 from datetime import datetime
 
+"""
+1. semua image yg belum dimasukkan ke database ditaruh ke dalam folder "temp"
+2. masing-masing image kemudian di-extract info nya sebagai input untuk dbase
+3. setiap image yang selesai di-extract dimasukkan ke dalam folder img
+4. done!
+"""
+
 for fn in os.listdir('img'):
     filename, filext = os.path.splitext(fn)
     print filename
@@ -15,3 +22,4 @@ for fn in os.listdir('img'):
 
 
 # TODO: inserting into mongodb
+# cek dulu apakah filename sudah ada, jika sudah lewat, jika belum masukkan
