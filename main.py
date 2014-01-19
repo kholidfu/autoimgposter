@@ -2,6 +2,7 @@ from PIL import Image # pip install pillow
 import os
 from datetime import datetime
 import shutil
+import pymongo
 
 """
 1. semua image yg belum dimasukkan ke database ditaruh ke dalam folder "temp"
@@ -12,6 +13,7 @@ import shutil
 data
 
 {
+'filename': 'thefilename',
 'title': 'thetitle',
 'size': 'imgsize',
 'dim': 'img_dimension', # tuple
@@ -23,17 +25,24 @@ data
 shutil.move(src, dest)
 """
 
+c = pymongo.Connection()
+c.drop_database('autoimg')
+db = c['autoimg']
+
+
 for fn in os.listdir('img'):
     filename, filext = os.path.splitext(fn)
-    print filename
-
-from PIL import Image
-
-for fn in os.listdir('img'):
     im = Image.open('img/' + fn)
-    print im.format, im.size, im.mode # format, dimension, mode
-    print os.stat('img/' + fn).st_size # filesize
+    if db.image.find_one({'title': filename.replace('_', ' ')}) is None:
+        db.image.insert({
+            'filename': filename+filext,
+            'title': filename.replace('_', ' '),
+            'size': os.stat('img/' + fn).st_size,
+            'format': im.format,
+            'dim': im.size,
+            'added': datetime.now(),
+            'hits': 0,
+            })
 
-
-# TODO: inserting into mongodb
-# cek dulu apakah filename sudah ada, jika sudah lewat, jika belum masukkan
+from pprint import pprint
+pprint(db.image.find_one())
