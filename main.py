@@ -1,6 +1,7 @@
 from PIL import Image # pip install pillow
 import os
 from datetime import datetime
+import shutil
 
 """
 1. semua image yg belum dimasukkan ke database ditaruh ke dalam folder "temp"
@@ -19,6 +20,7 @@ data
 'hits': 0,
 }
 
+shutil.move(src, dest)
 """
 
 for fn in os.listdir('img'):
