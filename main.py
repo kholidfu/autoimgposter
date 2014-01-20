@@ -26,6 +26,9 @@ resolusi asli:
 4. setiap image yang selesai di-extract & resize dimasukkan ke dalam folder img
 5. done!
 
+info yang paling penting untuk di-extract adalah unique id, biar tidak ada
+yang duplikat, caranya menggunakan exiftool?
+
 data
 
 {
